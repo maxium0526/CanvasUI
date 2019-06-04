@@ -1,7 +1,7 @@
 class Scene extends Component{
 	constructor(config){
 		super(config);
-
+		this.color = config.color || "#FFFFFF";
 		this.comps = [];
 	}
 
@@ -17,6 +17,8 @@ class Scene extends Component{
 		ctx.beginPath();
 		ctx.rect(this.x, this.y, this.width, this.height);
 		ctx.stroke();
+		ctx.fillStyle = this.color;
+		ctx.fillRect(this.x, this.y, this.width, this.height);
 	}
 
 	addComponents(comps){
