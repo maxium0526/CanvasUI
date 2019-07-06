@@ -124,4 +124,8 @@ class Component{
 			this.onActions[action](this, canvas);
 		}
 	}
+
+	toString(){
+		return this.constructor.name;
+	}
 }

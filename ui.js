@@ -18,6 +18,8 @@ class UI{
 		this.items = [];
 		this.scenes = [];
 
+		this.debug = false;//debug mode
+
 		this.init();
 	}
 	init(){
@@ -46,6 +48,11 @@ class UI{
 		window.onkeypress = function(e){
 			for(let item of _this.items){
 				item.onKeyPress(e, _this.mousePosi, _this.preMousePosi);
+			}
+
+			if(e.keyCode == 100){//'d'
+				_this.debug = !_this.debug;
+				console.log('%cDEBUG MODE '+ (_this.debug ? 'ON' : 'OFF'), 'color: #0000FF');
 			}
 		}
 
@@ -138,11 +145,6 @@ class UI{
 				_this.preFocusedObj.onOutFocus(_this.mousePosi, _this.preMousePosi);
 			}
 
-			// if(_this.input.isReleased(258)){
-
-			// 	_this.pressedObj = null;
-			// }
-
 			if(_this.pressedObj && !_this.input.isPressed(258) && _this.input.getState(258) && _this.isMouseMoved()){
 				_this.pressedObj.onMouseDrag(_this.mousePosi, _this.preMousePosi);
 				_this.draggingObj = _this.pressedObj;
@@ -174,6 +176,25 @@ class UI{
 			// 	}
 			// }
 			// n.draw(ctx);
+
+			if(_this.debug){
+				let strs = [];
+				strs.push('Canvas Size:\t' + _this.canvas.width + ' x ' + _this.canvas.height);
+				strs.push('Refresh Interval:\t'+_this.interval + ' ms');
+				strs.push('');
+				strs.push('Mouse Position:\t' + _this.mousePosi.x + ' x ' + _this.mousePosi.y);
+				strs.push('');
+				strs.push('Pointing Component:\t' + _this.pointedObj);
+				strs.push('Pressing Component:\t' + _this.pressedObj);
+				strs.push('Dragging Component:\t' + _this.draggingObj);
+				strs.push('Focused Component:\t' + _this.focusedObj);
+				let y = 10;
+				_this.ctx.font = '12pt Arial';
+				for(let str of strs){
+					_this.ctx.fillText(str, 10, y);
+					y+=20;
+				}
+			}
 
 			window.requestAnimationFrame(display);
 		}
