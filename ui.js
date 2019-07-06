@@ -8,6 +8,11 @@ class UI{
 		this.preMousePosi = {x: -1, y: -1};
 		this.mousePosi = {x: -1, y: -1};
 
+		this.event = {
+			mousePosi: this.mousePosi,
+			preMousePosi: this.preMousePosi,
+
+		};
 		this.pressedObj = null;
 		this.pointedObj = null;
 		this.prePointedObj = null;
@@ -98,6 +103,10 @@ class UI{
 			// 		}
 			// 	}
 			// }
+
+			_this.event.mousePosi = _this.mousePosi;
+			_this.event.preMousePosi = _this.preMousePosi;
+
 			for(let item of _this.items){
 				if(item.isPointed(_this.mousePosi)){
 					_this.pointedObj = item;
@@ -106,33 +115,33 @@ class UI{
 			}
 
 			if(_this.prePointedObj !== _this.pointedObj && _this.pointedObj){
-				_this.pointedObj.onMouseEnter(_this.mousePosi, _this.preMousePosi);
+				_this.pointedObj.onMouseEnter(_this.event);
 			}
 
 			if(_this.pointedObj !== _this.prePointedObj && _this.prePointedObj){
-				_this.prePointedObj.onMouseLeave(_this.mousePosi, _this.preMousePosi);
+				_this.prePointedObj.onMouseLeave(_this.event);
 			}
 
 			if(_this.prePointedObj === _this.prePointedObj && _this.pointedObj){
-				_this.pointedObj.onMousePoint(_this.mousePosi, _this.preMousePosi);
+				_this.pointedObj.onMousePoint(_this.event);
 			}
 
 			if(_this.pointedObj && _this.input.isPressed(258)){
-				_this.pointedObj.onMousePress(_this.mousePosi, _this.preMousePosi);
+				_this.pointedObj.onMousePress(_this.event);
 				_this.pressedObj = _this.pointedObj;
 			}
 
 			if(_this.pointedObj && _this.input.isReleased(258)){
 				if(_this.pointedObj === _this.pressedObj){
 					if(_this.pointedObj !== _this.draggingObj){
-						_this.pointedObj.onMouseClick(_this.mousePosi, _this.preMousePosi);
+						_this.pointedObj.onMouseClick(_this.event);
 						// _this.pressedObj = null;
 					}						
-					_this.pointedObj.onFocus(_this.mousePosi, _this.preMousePosi);
+					_this.pointedObj.onFocus(_this.event);
 					_this.focusedObj = _this.pointedObj;	
 					// _this.draggingObj = null;				
 				}
-				_this.pointedObj.onMouseRelease(_this.mousePosi, _this.preMousePosi);
+				_this.pointedObj.onMouseRelease(_this.event);
 				
 			}
 
@@ -142,11 +151,11 @@ class UI{
 			}
 
 			if(_this.preFocusedObj !== _this.focusedObj && _this.preFocusedObj){
-				_this.preFocusedObj.onOutFocus(_this.mousePosi, _this.preMousePosi);
+				_this.preFocusedObj.onOutFocus(_this.event);
 			}
 
 			if(_this.pressedObj && !_this.input.isPressed(258) && _this.input.getState(258) && _this.isMouseMoved()){
-				_this.pressedObj.onMouseDrag(_this.mousePosi, _this.preMousePosi);
+				_this.pressedObj.onMouseDrag(_this.event);
 				_this.draggingObj = _this.pressedObj;
 			}
 

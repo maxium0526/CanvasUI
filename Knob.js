@@ -34,22 +34,22 @@ class Knob extends Component{
 		return false;
 	}
 
-	onMouseEnter(mousePosi){
+	onMouseEnter(e){
 		
 	}
 
-	onMouseLeave(mousePosi){
+	onMouseLeave(e){
 		
 	}
 
-	onMouseClick(mousePosi, preMousePosi){
+	onMouseClick(e){
 	}
 
-	onFocus(mousePosi, preMousePosi){
+	onFocus(e){
 		
 	}
 
-	onOutFocus(mousePosi, preMousePosi){
+	onOutFocus(e){
 		
 	}
 
@@ -61,18 +61,18 @@ class Knob extends Component{
 		
 	}
 
-	onMouseDrag(mousePosi, preMousePosi){
+	onMouseDrag(e){
 		//中心點
 		let x1 = this.getPosi().x;
 		let y1 = this.getPosi().y;
 
 		//初始點
-		let x2 = mousePosi.x;
-		let y2 = mousePosi.y;
+		let x2 = e.mousePosi.x;
+		let y2 = e.mousePosi.y;
 
 		//位移點
-		let x3 = preMousePosi.x;
-		let y3 = preMousePosi.y;
+		let x3 = e.preMousePosi.x;
+		let y3 = e.preMousePosi.y;
 
 		//http://www.csie.ntnu.edu.tw/~u91029/Point.html
 

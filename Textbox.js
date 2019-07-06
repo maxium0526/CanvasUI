@@ -42,18 +42,18 @@ class Textbox extends Component{
 		}
 	}
 
-	onMouseEnter(mousePosi){
+	onMouseEnter(e){
 		this.canvas.style.cursor = "text";
 	}
 
-	onMouseLeave(mousePosi){
+	onMouseLeave(e){
 		this.canvas.style.cursor = "default";
 	}
 
-	onMouseClick(mousePosi, preMousePosi){
+	onMouseClick(e){
 	}
 
-	onFocus(mousePosi, preMousePosi){
+	onFocus(e){
 		let _this = this;
 		clearInterval(this.timer);
 		this.showCursor = true;
@@ -65,7 +65,7 @@ class Textbox extends Component{
 		},500);
 	}
 
-	onOutFocus(mousePosi, preMousePosi){
+	onOutFocus(e){
 		clearInterval(this.timer);
 		this.showCursor = false;
 		this.isFocusing = false;

@@ -44,26 +44,26 @@ class Component{
 		return false;
 	}
 
-	onMouseEnter(mousePosi){
+	onMouseEnter(e){
 		this.executeAction('mouseenter');
 	}
 
-	onMouseLeave(mousePosi){
+	onMouseLeave(e){
 		this.executeAction('mouseleave');
 	}
 
-	onMousePoint(mousePosi){		
+	onMousePoint(e){		
 		this.executeAction('mousepoint');
 	}
 
-	onMousePress(mousePosi){
+	onMousePress(e){
 		this.executeAction('mousepress');
 	}
 
-	onMouseDrag(mousePosi, preMousePosi){
+	onMouseDrag(e){
 		if(this.isDraggable){
-			let dx = mousePosi.x - preMousePosi.x;
-			let dy = mousePosi.y - preMousePosi.y;
+			let dx = e.mousePosi.x - e.preMousePosi.x;
+			let dy = e.mousePosi.y - e.preMousePosi.y;
 			this.x += dx;
 			this.y += dy;
 			this.isDragging = true;
@@ -73,22 +73,22 @@ class Component{
 		
 	}
 
-	onMouseRelease(mousePosi, preMousePosi){
+	onMouseRelease(e){
 		if(this.isDraggable){
 			this.isDragging = false;
 		}
 		this.executeAction('mouserelease');
 	}
 
-	onMouseClick(mousePosi, preMousePosi){
+	onMouseClick(e){
 		this.executeAction('mouseclick');
 	}
 
-	onFocus(mousePosi, preMousePosi){
+	onFocus(e){
 		this.executeAction('focus');
 	}
 
-	onOutFocus(mousePosi, preMousePosi){
+	onOutFocus(e){
 		this.executeAction('outfocusF');
 	}
 

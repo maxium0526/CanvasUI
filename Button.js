@@ -30,24 +30,24 @@ class Button extends Component{
 		ctx.fillText(this.text, (this.getPosi().x+this.getPosi().x+this.width)/2, (this.getPosi().y+this.getPosi().y+this.height)/2, this.width);
 	}
 
-	onMouseEnter(mousePosi){
+	onMouseEnter(e){
 		this.borderColor = "#0000FF";
 	}
 
-	onMouseLeave(mousePosi){
+	onMouseLeave(e){
 		this.borderColor = "#000000";
 		this.isPressing = false;
 	}
 
-	onMousePress(mousePosi){
+	onMousePress(e){
 		this.isPressing = true;
 	}
 
-	onMouseRelease(mousePosi, preMousePosi){
+	onMouseRelease(e){
 		this.isPressing = false;
 	}
 
-	onMouseClick(mousePosi, preMousePosi){
+	onMouseClick(e){
 		this.executeAction('click');
 	}
 }
