@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="Checkbox.js"></script>
 	<script type="text/javascript" src="Scene.js"></script>
 	<script type="text/javascript" src="ui.js"></script>
+	<script type="text/javascript" src="Knob.js"></script>
 </head>
 <body style="margin: 0;">
 	<canvas id="canvas"></canvas>
@@ -71,13 +72,19 @@
 			window.location.href = "http://ipmer.net";
 		})
 
+		var knob = new Knob({
+			x: 500,
+			y: 100,
+			r: 40
+		})
+
 		ui.addScene(new Scene({
 			x: 5,
 			y: 5,
 			width: 600,
 			height: 400,
 			isDraggable: true
-		}).addComponents([titleLabel, loginLabel, passwordLabel, loginTextbox, passwordTextbox, rememberMeCheckBox, loginButton]));
+		}).addComponents([titleLabel, loginLabel, passwordLabel, loginTextbox, passwordTextbox, rememberMeCheckBox, loginButton, knob]));
 
 		let b = document.getElementById('button');
 		b.onclick = function(e){
