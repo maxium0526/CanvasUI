@@ -7,7 +7,10 @@ class Knob extends Component{
 		this.maxValue = config.maxValue || 100;
 		this.minValue = config.minValue	|| 0;
 		this.integerValue = config.integerValue || true;
-
+		this.borderColor = config.borderColor || "#000000";
+		this.color = config.color || "#eeeeee";
+		this.markColor = config.markColor || "#000000";
+		this.markR = config.markR || 3;
 		this.degree = config.degree || 270;
 	}
 
@@ -17,11 +20,20 @@ class Knob extends Component{
 		ctx.arc(this.getPosi().x, this.getPosi().y, this.r, 0, 2 * Math.PI);
 		ctx.stroke();
 
+		ctx.fillStyle = this.color;
+		ctx.arc(this.getPosi().x, this.getPosi().y, this.r, 0, 2 * Math.PI);
+		ctx.fill();
+
 		ctx.font = this.font;
 		ctx.fillStyle = this.fontColor;
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 		ctx.fillText(Math.floor(this.value), this.getPosi().x, this.getPosi().y + this.r * 0.05, this.r * 2 / 1.1);
+
+		ctx.fillStyle = this.markColor;
+		ctx.beginPath();
+		ctx.arc(this.getPosi().x + Math.cos(this.degree * Math.PI / 180) * this.r,this.getPosi().y + Math.sin(this.degree * Math.PI / 180) * this.r, 3s, 0, 2 * Math.PI);
+		ctx.fill();
 	}
 
 	isPointed(mousePosi){
