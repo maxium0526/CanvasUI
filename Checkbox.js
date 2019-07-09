@@ -35,16 +35,19 @@ class Checkbox extends Component{
 
 	onMouseEnter(e){
 		this.borderColor = "#0000FF";
+		e.ui.refreshDisplay();
 		super.onMouseEnter(e);
 	}
 
 	onMouseLeave(e){
 		this.borderColor = "#000000";
+		e.ui.refreshDisplay();
 		super.onMouseLeave(e);
 	}
 
 	onMouseClick(e){
 		this.isChecked = !this.isChecked;
+		e.ui.refreshDisplay();
 		super.onMouseClick(e);
 	}
 }

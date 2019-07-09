@@ -11,7 +11,7 @@ class UI{
 		this.event = {
 			mousePosi: this.mousePosi,
 			preMousePosi: this.preMousePosi,
-
+			ui: this,
 		};
 		this.pressedObj = null;
 		this.pointedObj = null;
@@ -24,6 +24,9 @@ class UI{
 		this.scenes = [];
 
 		this.debug = false;//debug mode
+		this.autoRefreshDisplay = config.autoRefreshDisplay || false;
+
+		this.refreshDisplayOnNextFrame = true;
 
 		this.init();
 	}
@@ -57,6 +60,7 @@ class UI{
 
 			if(e.keyCode == 100){//'d'
 				_this.debug = !_this.debug;
+				_this.refreshDisplayOnNextFrame = true;
 				console.log('%cDEBUG MODE '+ (_this.debug ? 'ON' : 'OFF'), 'color: #0000FF');
 			}
 		}
@@ -170,8 +174,7 @@ class UI{
 		}, this.interval);
 
 
-		let display = function(){
-
+		let display = function(_this){
 			_this.ctx.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
 
 			for(let i=_this.items.length-1; i>=0; i--){
@@ -203,12 +206,25 @@ class UI{
 					_this.ctx.fillText(str, 10, y);
 					y+=20;
 				}
+				_this.refreshDisplay();//this will keep refreshing display
 			}
-
-			window.requestAnimationFrame(display);
 		}
 
-		window.requestAnimationFrame(display);
+		let displayMethod = function(){
+			if(_this.autoRefreshDisplay){
+				display(_this);
+				window.requestAnimationFrame(displayMethod);
+			} else {
+				if(_this.refreshDisplayOnNextFrame){
+					_this.refreshDisplayOnNextFrame = false;
+					display(_this);
+					
+				}
+				window.requestAnimationFrame(displayMethod);
+			}
+		}
+
+		window.requestAnimationFrame(displayMethod);
 	}
 
 	isMouseMoved(offset = 0){
@@ -237,5 +253,9 @@ class UI{
 			this.items = this.items.concat(scene.comps);
 			this.items.push(scene);
 		}
+	}
+
+	refreshDisplay(){//called by components
+		this.refreshDisplayOnNextFrame = true;
 	}
 }

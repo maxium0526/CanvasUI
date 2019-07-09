@@ -32,22 +32,26 @@ class Button extends Component{
 
 	onMouseEnter(e){
 		this.borderColor = "#0000FF";
+		e.ui.refreshDisplay();
 		super.onMouseEnter(e);
 	}
 
 	onMouseLeave(e){
 		this.borderColor = "#000000";
 		this.isPressing = false;
+		e.ui.refreshDisplay();
 		super.onMouseLeave(e);
 	}
 
 	onMousePress(e){
 		this.isPressing = true;
+		e.ui.refreshDisplay();
 		super.onMousePress(e);
 	}
 
 	onMouseRelease(e){
 		this.isPressing = false;
+		e.ui.refreshDisplay();
 		super.onMouseRelease(e);
 	}
 

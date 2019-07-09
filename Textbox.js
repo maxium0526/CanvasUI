@@ -61,7 +61,11 @@ class Textbox extends Component{
 		this.timer = setInterval(function(){
 
 			_this.showCursor = !_this.showCursor;
+			e.ui.refreshDisplay();
 		},500);
+
+		e.ui.refreshDisplay();
+		
 		super.onFocus(e);
 	}
 
@@ -69,6 +73,7 @@ class Textbox extends Component{
 		clearInterval(this.timer);
 		this.showCursor = false;
 		this.isFocusing = false;
+		e.ui.refreshDisplay();
 		super.onOutFocus(e);
 	}
 
@@ -78,6 +83,7 @@ class Textbox extends Component{
 				this.text = this.text.substring(0, this.text.length-1);
 			}
 		}
+		e.ui.refreshDisplay();
 		super.onKeyDown(e);
 	}
 
@@ -85,6 +91,7 @@ class Textbox extends Component{
 		if(this.isFocusing){
 			this.text += String.fromCharCode(e.keyCode);
 		}
+		e.ui.refreshDisplay();
 		super.onKeyPress(e);
 	}
 }

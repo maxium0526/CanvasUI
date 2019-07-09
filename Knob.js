@@ -92,6 +92,7 @@ class Knob extends Component{
 			this.value = this.minValue;
 		}
 
+		e.ui.refreshDisplay();
 		super.onMouseDrag(e);
 	}
 

@@ -67,10 +67,13 @@ class Component{
 			this.x += dx;
 			this.y += dy;
 			this.isDragging = true;
-		}
-		this.executeAction('mousedrag');
 
-		
+			e.ui.refreshDisplay();
+		}
+
+
+
+		this.executeAction('mousedrag');
 	}
 
 	onMouseRelease(e){
