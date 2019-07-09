@@ -17,10 +17,11 @@ class Knob extends Component{
 		ctx.arc(this.getPosi().x, this.getPosi().y, this.r, 0, 2 * Math.PI);
 		ctx.stroke();
 
+		ctx.font = this.font;
 		ctx.fillStyle = this.fontColor;
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
-		ctx.fillText(Math.floor(this.value), this.getPosi().x, this.getPosi().y, this.r * 2 / 1.1);
+		ctx.fillText(Math.floor(this.value), this.getPosi().x, this.getPosi().y + this.r * 0.05, this.r * 2 / 1.1);
 	}
 
 	isPointed(mousePosi){
