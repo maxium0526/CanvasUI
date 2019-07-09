@@ -32,7 +32,7 @@ class Knob extends Component{
 
 		ctx.fillStyle = this.markColor;
 		ctx.beginPath();
-		ctx.arc(this.getPosi().x + Math.cos(this.degree * Math.PI / 180) * this.r,this.getPosi().y + Math.sin(this.degree * Math.PI / 180) * this.r, 3s, 0, 2 * Math.PI);
+		ctx.arc(this.getPosi().x + Math.cos(this.degree * Math.PI / 180) * this.r,this.getPosi().y + Math.sin(this.degree * Math.PI / 180) * this.r, this.markR, 0, 2 * Math.PI);
 		ctx.fill();
 	}
 

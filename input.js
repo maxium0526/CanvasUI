@@ -3,6 +3,8 @@ var pre = []
 
 class Input{
 	constructor(){
+		this.input = [];
+		this.pre = [];
 		for(let i=0; i<259; i++){
 		input[i] = false;
 		pre[i] = false;
