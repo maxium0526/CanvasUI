@@ -1,6 +1,3 @@
-var input = [];
-var pre = []
-
 class Input{
 	constructor(){
 		this.input = [];
