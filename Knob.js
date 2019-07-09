@@ -21,8 +21,6 @@ class Knob extends Component{
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 		ctx.fillText(Math.floor(this.value), this.getPosi().x, this.getPosi().y, this.r * 2 / 1.1);
-
-
 	}
 
 	isPointed(mousePosi){
@@ -32,33 +30,6 @@ class Knob extends Component{
 			return true;
 		}
 		return false;
-	}
-
-	onMouseEnter(e){
-		
-	}
-
-	onMouseLeave(e){
-		
-	}
-
-	onMouseClick(e){
-	}
-
-	onFocus(e){
-		
-	}
-
-	onOutFocus(e){
-		
-	}
-
-	onKeyDown(e, mousePosi, preMousePosi){
-		
-	}
-
-	onKeyPress(e, mousePosi, preMousePosi){
-		
 	}
 
 	onMouseDrag(e){
@@ -108,6 +79,7 @@ class Knob extends Component{
 			this.value = this.minValue;
 		}
 
+		super.onMouseDrag(e);
 	}
 
 	getValue(){

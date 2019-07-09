@@ -44,13 +44,12 @@ class Textbox extends Component{
 
 	onMouseEnter(e){
 		this.canvas.style.cursor = "text";
+		super.onMouseEnter(e);
 	}
 
 	onMouseLeave(e){
 		this.canvas.style.cursor = "default";
-	}
-
-	onMouseClick(e){
+		super.onMouseLeave(e);
 	}
 
 	onFocus(e){
@@ -63,12 +62,14 @@ class Textbox extends Component{
 
 			_this.showCursor = !_this.showCursor;
 		},500);
+		super.onFocus(e);
 	}
 
 	onOutFocus(e){
 		clearInterval(this.timer);
 		this.showCursor = false;
 		this.isFocusing = false;
+		super.onOutFocus(e);
 	}
 
 	onKeyDown(e, mousePosi, preMousePosi){
@@ -77,11 +78,13 @@ class Textbox extends Component{
 				this.text = this.text.substring(0, this.text.length-1);
 			}
 		}
+		super.onKeyDown(e);
 	}
 
 	onKeyPress(e, mousePosi, preMousePosi){
 		if(this.isFocusing){
 			this.text += String.fromCharCode(e.keyCode);
 		}
+		super.onKeyPress(e);
 	}
 }
