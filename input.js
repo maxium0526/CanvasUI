@@ -6,29 +6,29 @@ class Input{
 		this.input = [];
 		this.pre = [];
 		for(let i=0; i<259; i++){
-		input[i] = false;
-		pre[i] = false;
+		this.input[i] = false;
+		this.pre[i] = false;
 	}
 	}
 	down(kc){
-		input[kc] = true;
-		//console.log(input);
+		this.input[kc] = true;
+		//console.log(this.input);
 
 	}
 	up(kc){
-		input[kc] = false;
-		//console.log(input);
+		this.input[kc] = false;
+		//console.log(this.input);
 
 	}
 	getState(kc){
-		return input[kc];
+		return this.input[kc];
 	}
 	isPressed(kc){
-		return input[kc]===true && pre[kc]===false;		
+		return this.input[kc]===true && this.pre[kc]===false;		
 	}
 
 	isReleased(kc){
-		return input[kc]===false && pre[kc]===true;
+		return this.input[kc]===false && this.pre[kc]===true;
 	}
 
 	getMousePosi(canvas, evt) {
@@ -40,8 +40,8 @@ class Input{
 	}
 	nxt(){
 		for(let i=0; i<259;i++){
-			pre[i] = input[i];
-			// input[i] = false;
+			this.pre[i] = this.input[i];
+			// this.input[i] = false;
 		}
 	}
 }
