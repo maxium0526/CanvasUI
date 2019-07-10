@@ -178,7 +178,9 @@ class UI{
 			_this.ctx.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
 
 			for(let i=_this.items.length-1; i>=0; i--){
-				_this.items[i].draw(_this.ctx);
+				if(_this.items[i].isVisible){
+					_this.items[i].draw(_this.ctx);
+				}
 			}
 
 			// for(let scene of _this.scenes){

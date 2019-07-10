@@ -14,6 +14,8 @@ class Component{
 		this.canvas = config.canvas || null;
 
 		this.isDraggable = config.isDraggable || false;
+		this.isVisible = config.isVisible == null ? true : config.isVisible;
+
 		this.isDragging = false;
 		this.isFocusing = false;
 		this.isPressing = false;
