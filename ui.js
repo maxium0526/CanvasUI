@@ -48,12 +48,14 @@ class UI{
 		}
 
 		window.onkeydown = function(e){
+			e.ui = _this;
 			for(let item of _this.items){
 				item.onKeyDown(e, _this.mousePosi, _this.preMousePosi);
 			}
 		}
 
 		window.onkeypress = function(e){
+			e.ui = _this;
 			for(let item of _this.items){
 				item.onKeyPress(e, _this.mousePosi, _this.preMousePosi);
 			}
