@@ -45,6 +45,7 @@ class UI{
 		this.canvas.onmousemove = function(e){
 			
 			_this.mousePosi = _this.input.getMousePosi(_this.canvas, e);
+
 		}
 
 		window.onkeydown = function(e){
@@ -66,6 +67,7 @@ class UI{
 				console.log('%cDEBUG MODE '+ (_this.debug ? 'ON' : 'OFF'), 'color: #0000FF');
 			}
 		}
+
 
 		setInterval(function(){	
 			_this.pointedObj = null;
@@ -161,13 +163,20 @@ class UI{
 			}
 
 			if(_this.pressedObj && !_this.input.isPressed(258) && _this.input.getState(258) && _this.isMouseMoved()){
+				// console.log(_this.mousePosi)
+				if(_this.mousePosi.x==undefined){console.log('hi')}
 				_this.pressedObj.onMouseDrag(_this.event);
+				if(_this.mousePosi.x==undefined){console.log('hi')}
 				_this.draggingObj = _this.pressedObj;
+				if(_this.mousePosi.x==undefined){console.log('hi')}
+
 			}
 
 			for(let item of _this.items){
 				item.nxt();
 			}
+
+
 
 			_this.input.nxt();
 			_this.preMousePosi = _this.mousePosi;
@@ -187,11 +196,7 @@ class UI{
 
 			// for(let scene of _this.scenes){
 			// 	scene.draw(_this.ctx);
-			// 	for(let comp of scene.comps){
-			// 		comp.draw(_this.ctx);
-			// 	}
 			// }
-			// n.draw(ctx);
 
 			if(_this.debug){
 				let strs = [];
@@ -240,11 +245,11 @@ class UI{
 		return true;
 	}
 
-	// addComponent(obj){
-	// 	// this.items.push(obj.setCanvas(this.canvas));
-	// 	this.scenes[0].addComponents([obj.setCanvas(this.canvas)]);
-	// 	this.updateItems();
-	// }
+	addComponent(obj){
+		// this.items.push(obj.setCanvas(this.canvas));
+		this.scenes[0].addComponents([obj.setCanvas(this.canvas)]);
+		this.updateItems();
+	}
 
 	addScene(scene){
 		this.scenes.push(scene.setCanvas(this.canvas));
@@ -254,9 +259,22 @@ class UI{
 	updateItems(){
 		this.items = [];
 		for(let scene of this.scenes){
-			this.items = this.items.concat(scene.comps);
-			this.items.push(scene);
+			// this.items = this.items.concat(scene.comps);
+			// this.items.push(scene);
+			this.items = this.items.concat(this.getItems(scene));
 		}
+	}
+
+	getItems(item){
+		console.log('hi')
+		let items = [];
+		if(item.constructor.name=='Scene'){
+			for(let comp of item.comps){
+				items = items.concat(this.getItems(comp));
+			}
+		}
+		items.push(item);
+		return items;
 	}
 
 	refreshDisplay(){//called by components

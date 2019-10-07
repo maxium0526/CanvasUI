@@ -5,20 +5,24 @@ class Scene extends Component{
 		this.comps = [];
 	}
 
-	getPosi(){
-		return {
-			x: this.x,
-			y: this.y
-		}
-	}
+	// getPosi(){
+	// 	return {
+	// 		x: this.x,
+	// 		y: this.y
+	// 	}
+	// }
 
 	draw(ctx){
 		ctx.strokeStyle = "#000000";
 		ctx.beginPath();
-		ctx.rect(this.x, this.y, this.width, this.height);
+		ctx.rect(this.getPosi().x, this.getPosi().y, this.width, this.height);
 		ctx.stroke();
 		ctx.fillStyle = this.color;
-		ctx.fillRect(this.x, this.y, this.width, this.height);
+		ctx.fillRect(this.getPosi().x, this.getPosi().y, this.width, this.height);
+
+		for(let comp of this.comps){
+			comp.draw(ctx);
+		}
 	}
 
 	addComponents(comps){
