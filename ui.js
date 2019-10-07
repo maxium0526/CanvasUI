@@ -266,7 +266,6 @@ class UI{
 	}
 
 	getItems(item){
-		console.log('hi')
 		let items = [];
 		if(item.constructor.name=='Scene'){
 			for(let comp of item.comps){
