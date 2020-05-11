@@ -85,6 +85,15 @@ class MapBuilderMapItemSelector{
 			color: '#cecece',
 			fontColor: '#000000',
 		}));
+		// this.buttons.push(new Button({
+		// 	x: 5,
+		// 	y: 245,
+		// 	width: 80,
+		// 	height: 25,
+		// 	text: 'Field',
+		// 	color: '#cecece',
+		// 	fontColor: '#000000',
+		// }));
 
 		let _mapBuilderCanvas = this.mapBuilderCanvas;
 		for(let button of this.buttons){

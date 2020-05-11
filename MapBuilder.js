@@ -15,6 +15,7 @@ class MapBuilder{
 			width: this.scene.width - 105,
 			height: this.scene.height - 10,
 			grid: config.grid ? config.grid : null,
+			scale: config.scale ? config.scale : 2,
 		});
 		this.mapBuilderMapItemSelector = new MapBuilderMapItemSelector({
 			x: this.scene.x + this.scene.width - 95,

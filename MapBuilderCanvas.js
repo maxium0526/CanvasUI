@@ -7,6 +7,7 @@ class MapBuilderCanvas extends Component{
 
 	init(){
 		this.grid = this.config.grid ? this.config.grid : null;
+		this.scale = this.config.scale ? this.config.scale : 1;
 		this.gridColor = this.config.gridColor ? this.config.gridColor : '#cccccc';
 		this.borderColor = this.config.borderColor ? this.config.borderColor : '#000000';
 		this.mapItemType = 'MapItem';
@@ -49,14 +50,14 @@ class MapBuilderCanvas extends Component{
 		for(let mapItem of this.mapItems){
 			ctx.fillStyle = mapItem.color;
 			ctx.beginPath();
-			ctx.rect(mapItem.x + this.getPosi().x, mapItem.y + this.getPosi().y, mapItem.width, mapItem.height);
+			ctx.rect(mapItem.x / this.scale + this.getPosi().x, mapItem.y / this.scale + this.getPosi().y, mapItem.width / this.scale, mapItem.height / this.scale);
 			ctx.fill();
 		}
 
 		if(this.selectedMapItem){
 			ctx.strokeStyle = '#0000ff';
 			ctx.beginPath();
-			ctx.rect(this.selectedMapItem.x + this.getPosi().x, this.selectedMapItem.y + this.getPosi().y, this.selectedMapItem.width, this.selectedMapItem.height)
+			ctx.rect(this.selectedMapItem.x  / this.scale+ this.getPosi().x, this.selectedMapItem.y  / this.scale+ this.getPosi().y, this.selectedMapItem.width / this.scale, this.selectedMapItem.height / this.scale)
 			ctx.stroke();
 		}
 
@@ -71,8 +72,8 @@ class MapBuilderCanvas extends Component{
 	onMouseClick(e){
 		this.clickedPosi.x = e.mousePosi.x;
 		this.clickedPosi.y = e.mousePosi.y;
-		let x = this.clickedPosi.x-this.getPosi().x;
-		let y = this.clickedPosi.y-this.getPosi().y;
+		let x = (this.clickedPosi.x-this.getPosi().x) * 2;
+		let y = (this.clickedPosi.y-this.getPosi().y) * 2;
 		let filteredMapItems = this.mapItems.filter((m)=>{
 			return m.x<=x && x<=m.x+m.width && m.y<=y && y<=m.y+m.height;
 		});
@@ -153,6 +154,11 @@ class MapBuilderCanvas extends Component{
 			this.newMapItem.height = dry - tly;
 
 		}
+
+		this.newMapItem.x *= this.scale;
+		this.newMapItem.y *= this.scale;
+		this.newMapItem.width *= this.scale;
+		this.newMapItem.height *= this.scale;
 		this.newMapItem.type = this.mapItemType;
 		this.newMapItem.color = this.newMapItemColor;
 		if(this.newMapItem.width>0 && this.newMapItem.height>0){
