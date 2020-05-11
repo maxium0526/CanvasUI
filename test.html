@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nodes</title>
+	<script type="text/javascript" src="input.js"></script>
+	<script type="text/javascript" src="Component.js"></script>
+	<script type="text/javascript" src="node.js"></script>
+	<script type="text/javascript" src="Button.js"></script>
+	<script type="text/javascript" src="Label.js"></script>
+	<script type="text/javascript" src="Textbox.js"></script>
+	<script type="text/javascript" src="Checkbox.js"></script>
+	<script type="text/javascript" src="MapBuilderCanvas.js"></script>
+	<script type="text/javascript" src="Scene.js"></script>
+	<script type="text/javascript" src="ui.js"></script>
+	<script type="text/javascript" src="MapBuilderMapItemSelector.js"></script>
+	<script type="text/javascript" src="MapBuilder.js"></script>
+</head>
+<body style="margin: 0;">
+	<canvas id="canvas" width="1800" height="900"></canvas>
+	<button id="button">Download</button>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		var ui = new UI(canvas, {});
+		// var scene = new Scene({
+		// 		x: 100,
+		// 		y: 0,
+		// 		width: 1600,
+		// 		height: 900,
+		// 		isDraggable: true,
+		// 	});
+		// var mb = new MapBuilderCanvas({
+		// 	x: 5,
+		// 	y: 5,
+		// 	width: 1590,
+		// 	height: 890,
+		// 	grid: 10,
+		// });
+
+		// var subScene = new Scene({
+		// 	x:500,
+		// 	y:500,
+		// 	width: 1000,
+		// 	height: 1000,
+		// })
+
+		// var b = new Button({
+		// 	x:10,
+		// 	y:10,
+		// 	width:20,
+		// 	height: 20
+		// })
+		// scene.addComponents([mb, subScene]);
+
+		var mb = new MapBuilder({
+			parent: ui,
+			grid: 16,
+			scale: 2,
+		})
+		
+	</script>
+</body>
+</html>
