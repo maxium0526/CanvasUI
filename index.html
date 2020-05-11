@@ -76,6 +76,12 @@
 				window.location.href = 'http://google.com';
 			}
 		})
+		var node = new Node({
+			x: 500,
+			y: 500,
+			r: 50,
+			isDraggable: true
+		})
 		ui.addScene(new Scene({
 			x: 5,
 			y: 5,
@@ -85,7 +91,7 @@
 			color: "#ddffdd",
 			borderColor: "#0000ff",
 			showCloseButton: true,
-		}).addComponents([titleLabel, loginLabel, passwordLabel, loginTextbox, passwordTextbox, rememberMeCheckBox, loginButton, knob]));
+		}).addComponents([titleLabel, loginLabel, passwordLabel, loginTextbox, passwordTextbox, rememberMeCheckBox, loginButton, knob, node]));
 		let b = document.getElementById('button');
 		b.onclick = function(e){
 			let obj = {hello: "world"};

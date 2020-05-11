@@ -1,5 +1,6 @@
-class Node{
+class Node extends Component{
 	constructor(config){
+		super(config)
 		this.x = config.x;
 		this.y = config.y;
 		this.r = config.r;
@@ -55,9 +56,9 @@ class Node{
 		}
 	}
 
-	isPointed(x, y){
-		let dx = this.x - x;
-		let dy = this.y - y;
+	isPointed(mousePosi){
+		let dx = this.getPosi().x - mousePosi.x;
+		let dy = this.getPosi().y - mousePosi.y;
 		if(Math.sqrt(dx * dx + dy * dy) <= this.r){
 			return true;
 		} else {
@@ -65,10 +66,10 @@ class Node{
 		}
 	}
 
-	onPoint(mousePosi){
+	onMousePoint(e){
 		this.pointed = true;
-		let dx = this.x - mousePosi.x;
-		let dy = this.y - mousePosi.y;
+		let dx = this.x - e.mousePosi.x;
+		let dy = this.y - e.mousePosi.y;
 		if(Math.sqrt(dx * dx + dy * dy) >= this.r - 5){
 			this.pointedTime++;
 		} else {
@@ -76,14 +77,14 @@ class Node{
 		}
 	}
 
-	onPress(mousePosi){
+	onMousePress(e){
 		this.vx = 0;
 		this.vy = 0;
 	}
 
-	onDrag(mousePosi, preMousePosi){
-		let dx = mousePosi.x - preMousePosi.x;
-		let dy = mousePosi.y - preMousePosi.y;
+	onMouseDrag(e){
+		let dx = e.mousePosi.x - e.preMousePosi.x;
+		let dy = e.mousePosi.y - e.preMousePosi.y;
 		this.x += dx;
 		this.y += dy;
 		this.vx = 0;
@@ -93,9 +94,9 @@ class Node{
 		// }
 	}
 
-	onRelease(mousePosi, preMousePosi){
-		let dx = mousePosi.x - preMousePosi.x;
-		let dy = mousePosi.y - preMousePosi.y;
+	onMouseRelease(e){
+		let dx = e.mousePosi.x - e.preMousePosi.x;
+		let dy = e.mousePosi.y - e.preMousePosi.y;
 		this.vx = dx;
 		this.vy = dy;
 	}
